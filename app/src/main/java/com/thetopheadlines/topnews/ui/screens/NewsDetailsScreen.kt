@@ -67,7 +67,7 @@ fun NewsDetailsScreen(navController: NavHostController, newsJson: String?) {
             LazyColumn(
                 modifier = Modifier
                     .padding(paddingValues)
-                    .padding(16.dp)
+                    .padding(12.dp)
                     .fillMaxSize()
             ) {
                 item {
@@ -80,12 +80,12 @@ fun NewsDetailsScreen(navController: NavHostController, newsJson: String?) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(250.dp),
-                        contentScale = ContentScale.Crop
+                        contentScale = ContentScale.Fit
                     )
-                    Spacer(modifier = Modifier.height(12.dp))
+                    Spacer(modifier = Modifier.height(10.dp))
                     Text(text = it.title, fontWeight = FontWeight.Bold, fontSize = 20.sp)
                     Text(
-                        text = "By ${it.author ?: "Anonymous"}, ${Utils.formatDate(it.publishedAt)}",
+                        text = "By ${it.author ?: "Anonymous"}  ${Utils.formatDate(it.publishedAt)}",
                         fontSize = 14.sp,
                         color = Color.Gray
                     )
