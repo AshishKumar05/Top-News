@@ -66,7 +66,7 @@ fun NewsDetailsScreen(navController: NavHostController, newsJson: String?) {
             LazyColumn(
                 modifier = Modifier
                     .padding(paddingValues)
-                    .padding(4.dp)
+                    .padding(start = 12.dp, end = 12.dp, top = 4.dp, bottom = 12.dp)
                     .fillMaxSize()
             ) {
                 item {
