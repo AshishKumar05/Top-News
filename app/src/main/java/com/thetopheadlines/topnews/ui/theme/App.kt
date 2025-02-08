@@ -1,4 +1,4 @@
-package com.thetopheadlines.topnews
+package com.thetopheadlines.topnews.ui.theme
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
