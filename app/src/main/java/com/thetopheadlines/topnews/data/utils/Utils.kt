@@ -7,7 +7,7 @@ import java.util.Locale
 object Utils {
 
     const val BASE_URL = "https://newsapi.org/v2/"
-    const val API_KEY = "cdd9560dd60b49f09817ff23a6b56db1"
+    const val API_KEY = ""
 
     fun formatDate(dateString: String): String {
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
