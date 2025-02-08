@@ -1,7 +1,6 @@
 package com.thetopheadlines.topnews.ui.screens
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -67,7 +66,7 @@ fun NewsDetailsScreen(navController: NavHostController, newsJson: String?) {
             LazyColumn(
                 modifier = Modifier
                     .padding(paddingValues)
-                    .padding(12.dp)
+                    .padding(4.dp)
                     .fillMaxSize()
             ) {
                 item {
