@@ -163,6 +163,7 @@ fun NewsItemCard(news: NewsItem, navController: NavHostController) {
                 Text(
                     text = if (!news.author.isNullOrBlank()) news.author else "Anonymous",
                     style = MaterialTheme.typography.titleMedium,
+                    maxLines = 1,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
