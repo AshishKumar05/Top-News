@@ -46,6 +46,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.google.gson.Gson
+import com.thetopheadlines.topnews.R
 import com.thetopheadlines.topnews.domain.model.NewsItem
 import com.thetopheadlines.topnews.ui.NewsViewModel
 import java.net.URLDecoder
@@ -148,7 +149,7 @@ fun NewsItemCard(news: NewsItem, navController: NavHostController) {
     ) {
         Row(modifier = Modifier.padding(16.dp)) {
             AsyncImage(
-                model = news.urlToImage,
+                model = news.urlToImage?: R.drawable.ic_news,
                 contentDescription = "News Image",
                 modifier = Modifier
                     .size(80.dp)

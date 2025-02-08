@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.google.gson.Gson
+import com.thetopheadlines.topnews.R
 import com.thetopheadlines.topnews.data.utils.Utils
 import com.thetopheadlines.topnews.domain.model.NewsItem
 import java.net.URLDecoder
@@ -37,7 +38,10 @@ import java.nio.charset.StandardCharsets
 @Composable
 fun NewsDetailsScreen(navController: NavHostController, newsJson: String?) {
     val news = newsJson?.let { json ->
-        Gson().fromJson(URLDecoder.decode(json, StandardCharsets.UTF_8.toString()), NewsItem::class.java)
+        Gson().fromJson(
+            URLDecoder.decode(json, StandardCharsets.UTF_8.toString()),
+            NewsItem::class.java
+        )
     }
 
     Scaffold(
@@ -46,7 +50,10 @@ fun NewsDetailsScreen(navController: NavHostController, newsJson: String?) {
                 title = { Text(text = "News Details") },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Back"
+                        )
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -64,22 +71,27 @@ fun NewsDetailsScreen(navController: NavHostController, newsJson: String?) {
                     .fillMaxSize()
             ) {
                 item {
-                    it.urlToImage?.let { imageUrl ->
-                        Image(
-                            painter = rememberAsyncImagePainter(imageUrl),
-                            contentDescription = "News Image",
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(250.dp),
-                            contentScale = ContentScale.Crop
-                        )
-                    }
+
+                    Image(
+                        painter = rememberAsyncImagePainter(
+                            model = it.urlToImage ?: R.drawable.ic_news
+                        ),
+                        contentDescription = "News Image",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(250.dp),
+                        contentScale = ContentScale.Crop
+                    )
                     Spacer(modifier = Modifier.height(12.dp))
                     Text(text = it.title, fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                    Text(text = "By ${it.author ?: "Anonymous"}, ${Utils.formatDate(it.publishedAt)}", fontSize = 14.sp, color = Color.Gray)
+                    Text(
+                        text = "By ${it.author ?: "Anonymous"}, ${Utils.formatDate(it.publishedAt)}",
+                        fontSize = 14.sp,
+                        color = Color.Gray
+                    )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(text = it.description.orEmpty())
-                    Spacer(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.height(30.dp))
                     Text(text = it.content ?: "No content available.")
                 }
             }
