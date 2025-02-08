@@ -1,13 +1,10 @@
 package com.thetopheadlines.topnews.domain.model
 
-
-
 data class NewsResponse(
     val status: String,
     val totalResults: Int,
     val articles: List<NewsItem>
 )
-
 
 data class NewsItem(
     val source: Source,
@@ -19,7 +16,6 @@ data class NewsItem(
     val publishedAt: String,
     val content: String?
 )
-
 
 data class Source(
     val id: String?,

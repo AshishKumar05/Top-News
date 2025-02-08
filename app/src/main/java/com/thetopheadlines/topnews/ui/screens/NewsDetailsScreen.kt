@@ -32,11 +32,6 @@ import com.thetopheadlines.topnews.domain.model.NewsItem
 import java.net.URLDecoder
 import java.nio.charset.StandardCharsets
 
-
-
-
-
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NewsDetailsScreen(navController: NavHostController, newsJson: String?) {

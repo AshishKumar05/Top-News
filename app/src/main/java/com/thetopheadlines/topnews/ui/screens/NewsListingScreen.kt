@@ -138,14 +138,6 @@ fun NewsListingScreen(navController: NavHostController) {
 fun NewsItemCard(news: NewsItem, navController: NavHostController) {
     val gson = Gson()
     val newsItemInJsonFormat = URLEncoder.encode(gson.toJson(news), StandardCharsets.UTF_8.toString())
-    Log.e("TAG", "NewsItemCard: $newsItemInJsonFormat")
-
-    val newsConverted = newsItemInJsonFormat?.let { json ->
-        Gson().fromJson(URLDecoder.decode(json, StandardCharsets.UTF_8.toString()), NewsItem::class.java)
-    }
-
-    Log.e("NewsDetailsScreen", "NewsDetailsScreen: $newsConverted and JSON $newsItemInJsonFormat")
-
 
     Card(
         modifier = Modifier

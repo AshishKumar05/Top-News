@@ -16,12 +16,9 @@ class NewsRepoImpl @Inject constructor(private val newsApiService: NewsApiServic
         emit(Resource.Loading())
 
         val response = newsApiService.getTopHeadlinesNews("us", Utils.API_KEY)
-        Log.d("NewsRepoImpl", "response: $response")
-
         if (response.isSuccessful) {
             val newsList = response.body()?.articles ?: emptyList()
-            emit(Resource.Error(response.message().orEmpty()))
-            //emit(Resource.Success(newsList))
+            emit(Resource.Success(newsList))
         } else {
             emit(Resource.Error(response.message().orEmpty()))
         }
