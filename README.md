@@ -6,7 +6,7 @@ Top News - A Modern News App
 ✔ Shows a progress bar while fetching data.
 ✔ Includes unit tests.
 
-Note: Like and comment api endpoints were not correct so could use in details screen.
+Note: Like and comment api endpoints were not correct so couldn't use in details screen.
 
 
 Building the Sample App
