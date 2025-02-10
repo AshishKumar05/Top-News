@@ -1,9 +1,11 @@
 Top News - A Modern News App
 
 ✔ Fetches top news headlines
-✔ Displays news details with images & descriptions
+✔ Displays news details with Images, Author, publish date, title, descriptions and content
 ✔ Implements loading states & error states
 ✔ Showing progress bar while fetching the data
+
+Note: Like and comment api endpoints were not correct so could use in details screen.
 
 
 Building the Sample App
@@ -18,6 +20,7 @@ Top News is a Jetpack Compose-based news application that fetches the latest hea
 It follows Clean Architecture, MVVM, and Repository Pattern, ensuring scalability and maintainability.
 Uses Hilt for Dependency Injection.
 Uses Coroutines & Flow for async operations.
+
 
 
 
