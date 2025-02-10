@@ -3,7 +3,8 @@ Top News - A Modern News App
 ✔ Fetches top news headlines
 ✔ Displays news details with Images, Author, publish date, title, descriptions and content
 ✔ Implements loading states & error states
-✔ Showing progress bar while fetching the data
+✔ Showing progress bar while fetching the data 
+✔ Added Unit test
 
 Note: Like and comment api endpoints were not correct so could use in details screen.
 
