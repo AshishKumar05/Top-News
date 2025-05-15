@@ -28,4 +28,13 @@ class NewsRepoImpl @Inject constructor(private val newsApiService: NewsApiServic
     }.catch { e ->
         emit(Resource.Error("Exception: ${e.localizedMessage}"))
     }
+
+    override suspend fun getToNewsHeadlinesAsync(): Resource<NewsResponse> {
+        val response = newsApiService.getTopHeadlinesNews("us", Utils.API_KEY)
+        return if (response.isSuccessful) {
+            Resource.Success(response.body()!!)
+        } else {
+            Resource.Error(response.message())
+        }
+    }
 }

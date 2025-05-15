@@ -8,4 +8,6 @@ interface NewsRepo {
 
     suspend fun getToNewsHeadlines(): Flow<Resource<NewsResponse>>
 
+    suspend fun getToNewsHeadlinesAsync(): Resource<NewsResponse>
+
 }
