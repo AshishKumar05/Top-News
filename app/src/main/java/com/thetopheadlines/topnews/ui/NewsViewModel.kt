@@ -21,9 +21,6 @@ class NewsViewModel @Inject constructor(private val newsRepo: NewsRepo) : ViewMo
     private val _newsResponse = MutableStateFlow<Resource<NewsResponse>>(Resource.Loading)
     val newsResponse: StateFlow<Resource<NewsResponse>> = _newsResponse.asStateFlow()
 
-    private val _count = MutableStateFlow<Int>(0)
-    val count: StateFlow<Int> = _count.asStateFlow()
-
     init {
         loadNews()
     }
