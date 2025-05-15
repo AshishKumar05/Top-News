@@ -2,10 +2,11 @@ package com.thetopheadlines.topnews.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.thetopheadlines.topnews.domain.model.NewsItem
+import com.thetopheadlines.topnews.domain.model.NewsResponse
 import com.thetopheadlines.topnews.domain.model.Resource
 import com.thetopheadlines.topnews.domain.repository.NewsRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,22 +18,25 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NewsViewModel @Inject constructor(private val newsRepo: NewsRepo) : ViewModel() {
-    private val _newsList = MutableStateFlow<Resource<List<NewsItem>>>(Resource.Loading())
-    val newsList: StateFlow<Resource<List<NewsItem>>> = _newsList.asStateFlow()
+    private val _newsResponse = MutableStateFlow<Resource<NewsResponse>>(Resource.Loading)
+    val newsResponse: StateFlow<Resource<NewsResponse>> = _newsResponse.asStateFlow()
+
+    private val _count = MutableStateFlow<Int>(0)
+    val count: StateFlow<Int> = _count.asStateFlow()
 
     init {
         loadNews()
     }
 
     fun loadNews() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             newsRepo.getToNewsHeadlines()
-                .onStart { _newsList.value = Resource.Loading() }
+                .onStart { _newsResponse.value = Resource.Loading }
                 .catch {
-                    _newsList.value = Resource.Error(it.message ?: "Something went wrong")
+                    _newsResponse.value = Resource.Error(it.message ?: "Something went wrong")
                 }
                 .collect { news ->
-                    _newsList.value = news
+                    _newsResponse.value = news
                 }
         }
     }

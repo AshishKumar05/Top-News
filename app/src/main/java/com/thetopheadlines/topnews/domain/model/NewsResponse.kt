@@ -3,7 +3,7 @@ package com.thetopheadlines.topnews.domain.model
 data class NewsResponse(
     val status: String,
     val totalResults: Int,
-    val articles: List<NewsItem>
+    val articles: List<NewsItem> = arrayListOf()
 )
 
 data class NewsItem(

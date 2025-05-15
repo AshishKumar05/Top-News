@@ -1,6 +1,5 @@
 package com.thetopheadlines.topnews.ui.screens
 
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -33,6 +32,7 @@ import androidx.navigation.NavHostController
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -48,8 +48,8 @@ import coil.compose.AsyncImage
 import com.google.gson.Gson
 import com.thetopheadlines.topnews.R
 import com.thetopheadlines.topnews.domain.model.NewsItem
+import com.thetopheadlines.topnews.domain.model.NewsResponse
 import com.thetopheadlines.topnews.ui.NewsViewModel
-import java.net.URLDecoder
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 import com.thetopheadlines.topnews.domain.model.Resource
@@ -59,7 +59,7 @@ import com.thetopheadlines.topnews.domain.model.Resource
 @Composable
 fun NewsListingScreen(navController: NavHostController) {
     val newsViewModel: NewsViewModel = hiltViewModel()
-    val newsState: Resource<List<NewsItem>> = newsViewModel.newsList.collectAsState().value
+    val newsState: Resource<NewsResponse> = newsViewModel.newsResponse.collectAsState().value
 
     Scaffold(
         topBar = {
@@ -86,7 +86,7 @@ fun NewsListingScreen(navController: NavHostController) {
                     CircularProgressIndicator()
                 }
                 is Resource.Success -> {
-                    val newsList = newsState.data
+                    val newsList = newsState.data.articles
                     LazyColumn {
                         items(newsList) { newsItem ->
                             NewsItemCard(newsItem, navController)
@@ -127,7 +127,6 @@ fun NewsListingScreen(navController: NavHostController) {
                         }
                     }
                 }
-
             }
         }
     }
