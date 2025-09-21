@@ -32,7 +32,6 @@ import androidx.navigation.NavHostController
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -59,7 +58,7 @@ import com.thetopheadlines.topnews.domain.model.Resource
 @Composable
 fun NewsListingScreen(navController: NavHostController) {
     val newsViewModel: NewsViewModel = hiltViewModel()
-    val newsState: Resource<NewsResponse> = newsViewModel.newsResponse.collectAsState().value
+    val newsState: Resource<NewsResponse> = newsViewModel.newsUIState.collectAsState().value.news
 
     Scaffold(
         topBar = {
